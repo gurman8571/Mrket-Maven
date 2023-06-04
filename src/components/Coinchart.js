@@ -14,9 +14,8 @@ export default function Coinchart() {
    const [closeloading, setcloseloading] = useState(false);
   //const  currency  = "USD";
 
-  const [prices, setprices] = useState([])
-  const [labels, setlabels] = useState([])
-  const { stock } = Cryptostate();
+ 
+  const { stock,prices,labels } = Cryptostate();
 
 
   const PredictClose =async()=>{
@@ -44,25 +43,9 @@ export default function Coinchart() {
           
         }
 
-  const getcoins=async () => {
-    setloading(true);
-    const data=await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=1H2H81HRU2Q8ZO2R`);
-         //setcoins(data.data);
-        console.log(data);
-   setprices(Object.values(data.data["Time Series (Daily)"]).slice(0,30));
-   setlabels(Object.keys(data.data["Time Series (Daily)"]).slice(0,30))
-   setloading(false); 
-   console.log(prices);
-
-
-  }
-
-  //console.log(coins);
-useEffect(() => {
   
-getcoins();
 
-}, [stock])
+ 
   
 
   //useEffect(() => {

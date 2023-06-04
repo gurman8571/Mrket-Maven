@@ -1,36 +1,25 @@
 import React, { useState,useEffect } from 'react'
 
 import {Cryptostate} from '../Context'
-import axios from'axios'
+
 import '../css/paginator.css'
 
 export default function Table() {
 
 
 //const [loading, setloading] = useState(false)
-const [prices, setprices] = useState([])
-const [labels, setlabels] = useState([])
-const { stock } = Cryptostate();
+
+const { stock,prices,labels } = Cryptostate();
 
 //fetch data
-  const getcoins=async () => {
-    const data=await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=1H2H81HRU2Q8ZO2R`);
-         //setcoins(data.data);
-        setprices(Object.values(data.data["Time Series (Daily)"]));
-   setlabels(Object.keys(data.data["Time Series (Daily)"]))
-         console.log('hi');           
-  }
+  
 //to seperate number with commas
   const seperate=(x)=>{
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 }
   //console.log(coins);
-useEffect(() => {
-  
-getcoins();
 
-}, [stock])
 
 
 
